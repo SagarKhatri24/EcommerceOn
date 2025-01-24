@@ -17,10 +17,12 @@
         android:src="@mipmap/ic_launcher" />
 
     <EditText
+        android:id="@+id/main_username"
         style="@style/edit_15"
         android:hint="Username" />
 
     <EditText
+        android:id="@+id/main_password"
         style="@style/edit_15"
         android:layout_marginTop="@dimen/_10sdp"
         android:hint="Password"
