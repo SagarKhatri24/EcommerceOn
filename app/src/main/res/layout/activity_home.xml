@@ -75,4 +75,33 @@
 
     </RadioGroup>
 
+    <CheckBox
+        android:id="@+id/home_cricket"
+        android:text="Cricket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <CheckBox
+        android:id="@+id/home_hockey"
+        android:text="Hockey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <CheckBox
+        android:id="@+id/home_chess"
+        android:text="Chess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <CheckBox
+        android:id="@+id/home_football"
+        android:text="Football"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/home_show"
+        android:text="Show"
+        style="@style/button_16"/>
+
 </LinearLayout>
