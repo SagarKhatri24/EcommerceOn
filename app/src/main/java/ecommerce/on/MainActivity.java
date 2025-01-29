@@ -18,7 +18,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button login;
+    Button login,signup;
     public static EditText username,password;
 
     @Override
@@ -27,6 +27,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         login = findViewById(R.id.main_login);
+        signup = findViewById(R.id.main_signup);
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SignupActivity.class);
+                startActivity(intent);
+            }
+        });
+
         username = findViewById(R.id.main_username);
         password = findViewById(R.id.main_password);
 
