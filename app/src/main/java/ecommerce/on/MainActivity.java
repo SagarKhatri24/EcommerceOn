@@ -1,6 +1,8 @@
 package ecommerce.on;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,13 +20,18 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button login,signup;
-    public static EditText username,password;
+    Button login, signup;
+    public static EditText username, password;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        db = openOrCreateDatabase("EcomApp.db", MODE_PRIVATE, null);
+        String tableQuery = "CREATE TABLE IF NOT EXISTS USERS(USERID INTEGER PRIMARY KEY AUTOINCREMENT,FIRSTNAME VARCHAR(50),LASTNAME VARCHAR(50),EMAIL VARCHAR(100),CONTACT INT(10),PASSWORD VARCHAR(20),GENDER VARCHAR(10))";
+        db.execSQL(tableQuery);
 
         login = findViewById(R.id.main_login);
         signup = findViewById(R.id.main_signup);
@@ -43,29 +50,32 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(username.getText().toString().trim().equals("")){
+                if (username.getText().toString().trim().equals("")) {
                     username.setError("Username Required");
-                }
-                else if(password.getText().toString().trim().equals("")){
+                } else if (password.getText().toString().trim().equals("")) {
                     password.setError("Password Required");
-                }
-                else if(password.getText().toString().trim().length()<6){
+                } else if (password.getText().toString().trim().length() < 6) {
                     password.setError("Min. 6 Char Password Required");
-                }
-                else {
-                    System.out.println("Login Successfully");
-                    Log.d("RESPONSE", "Login Successfully");
-                    Log.e("RESPONSE", "Login Successfully");
-                    Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_LONG).show();
-                    Snackbar.make(view, "Login Successfully", Snackbar.LENGTH_SHORT).show();
+                } else {
+                    String loginQuery = "SELECT * FROM USERS WHERE (EMAIL='"+username.getText().toString()+"' OR CONTACT='"+username.getText().toString()+"') AND PASSWORD='"+password.getText().toString()+"'";
+                    Cursor cursor = db.rawQuery(loginQuery,null);
+                    if(cursor.getCount()>0) {
+                        System.out.println("Login Successfully");
+                        Log.d("RESPONSE", "Login Successfully");
+                        Log.e("RESPONSE", "Login Successfully");
+                        Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_LONG).show();
+                        Snackbar.make(view, "Login Successfully", Snackbar.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("USERNAME",username.getText().toString());
-                    bundle.putString("PASSWORD",password.getText().toString());
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-
+                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("USERNAME", username.getText().toString());
+                        bundle.putString("PASSWORD", password.getText().toString());
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
