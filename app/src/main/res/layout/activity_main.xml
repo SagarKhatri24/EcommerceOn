@@ -13,7 +13,7 @@
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_gravity="center"
-        android:layout_marginVertical="@dimen/_70sdp"
+        android:layout_marginVertical="@dimen/_30sdp"
         android:src="@mipmap/ic_launcher" />
 
     <EditText
@@ -49,5 +49,12 @@
         android:layout_marginTop="@dimen/_20sdp"
         app:backgroundTint="@color/yellow"
         android:text="No Account Yet? Signup Now" />
+
+    <Button
+        android:id="@+id/main_users"
+        style="@style/button_16"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:backgroundTint="@color/blue"
+        android:text="User Data With Listview" />
 
 </LinearLayout>
