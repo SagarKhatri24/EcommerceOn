@@ -6,6 +6,8 @@
         <item name="android:fontFamily">@font/cantata_one</item>
     </style>
 
+    <style name="bottom_style" parent="Theme.AppCompat.DayNight.DarkActionBar"/>
+
     <style name="background">
         <item name="android:background">@color/bg_color</item>
     </style>

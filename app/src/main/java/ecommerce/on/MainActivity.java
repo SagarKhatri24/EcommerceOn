@@ -21,7 +21,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button login, signup,users;
+    Button login, signup,users,recycler;
     public static EditText username, password;
     SQLiteDatabase db;
     SharedPreferences sp;
@@ -36,6 +36,15 @@ public class MainActivity extends AppCompatActivity {
         db = openOrCreateDatabase("EcomApp.db", MODE_PRIVATE, null);
         String tableQuery = "CREATE TABLE IF NOT EXISTS USERS(USERID INTEGER PRIMARY KEY AUTOINCREMENT,FIRSTNAME VARCHAR(50),LASTNAME VARCHAR(50),EMAIL VARCHAR(100),CONTACT INT(10),PASSWORD VARCHAR(20),GENDER VARCHAR(10))";
         db.execSQL(tableQuery);
+
+        recycler = findViewById(R.id.main_recycler);
+        recycler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SqliteRecyclerActivity.class);
+                startActivity(intent);
+            }
+        });
 
         login = findViewById(R.id.main_login);
         signup = findViewById(R.id.main_signup);

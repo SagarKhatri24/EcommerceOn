@@ -8,6 +8,8 @@
 
     <style name="Theme.EcommerceOn" parent="Base.Theme.EcommerceOn" />
 
+    <style name="bottom_style" parent="Theme.AppCompat.DayNight.DarkActionBar"/>
+
     <style name="background">
         <item name="android:background">@color/white</item>
     </style>
@@ -54,5 +56,14 @@
         <item name="android:textSize">@dimen/_12sdp</item>
         <item name="android:textColor">@color/white_40</item>
     </style>
+
+    <style name="Theme.EcommerceOn.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.EcommerceOn.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.EcommerceOn.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
