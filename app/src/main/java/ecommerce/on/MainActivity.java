@@ -27,17 +27,25 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity {
 
     Button login, signup,users,recycler;
     public static EditText username, password;
     SQLiteDatabase db;
     SharedPreferences sp;
+    ApiInterface apiInterface;
+    ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
         sp = getSharedPreferences(ConstantSp.PREF,MODE_PRIVATE);
 
@@ -89,7 +97,12 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     //doSqliteLogin();
                     if(new ConnectionDetector(MainActivity.this).networkConnected()){
-                        new doLogin().execute();
+                        //new doLogin().execute();
+                        pd = new ProgressDialog(MainActivity.this);
+                        pd.setMessage("Please Wait...");
+                        pd.setCancelable(false);
+                        pd.show();
+                        doLoginRetrofit();
                     }
                     else{
                         new ConnectionDetector(MainActivity.this).networkDisconnected();
@@ -98,6 +111,54 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void doLoginRetrofit() {
+        Call<GetLoginData> call = apiInterface.getLoginData(username.getText().toString(),password.getText().toString());
+        call.enqueue(new Callback<GetLoginData>() {
+            @Override
+            public void onResponse(Call<GetLoginData> call, Response<GetLoginData> response) {
+                pd.dismiss();
+                if(response.code()==200){
+                    if(response.body().status){
+                        Toast.makeText(MainActivity.this, response.body().message, Toast.LENGTH_SHORT).show();
+                        for(int i=0;i<response.body().userData.size();i++){
+                            String sUserId = response.body().userData.get(i).userid;
+                            String sFirstName = response.body().userData.get(i).firstName;
+                            String sLastName = response.body().userData.get(i).lastName;
+                            String sEmail = response.body().userData.get(i).email;
+                            String sContact = response.body().userData.get(i).contact;
+                            String sPassword = "";
+                            String sGender = response.body().userData.get(i).gender;
+
+                            sp.edit().putString(ConstantSp.USERID,sUserId).commit();
+                            sp.edit().putString(ConstantSp.FIRSTNAME,sFirstName).commit();
+                            sp.edit().putString(ConstantSp.LASTNAME,sLastName).commit();
+                            sp.edit().putString(ConstantSp.EMAIL,sEmail).commit();
+                            sp.edit().putString(ConstantSp.CONTACT,sContact).commit();
+                            sp.edit().putString(ConstantSp.PASSWORD,sPassword).commit();
+                            sp.edit().putString(ConstantSp.GENDER,sGender).commit();
+
+                            //Log.d("RESPONSE_USER",sUserId+"\n"+sFirstName+"\n"+sLastName+"\n"+sEmail+"\n"+sContact+"\n"+sPassword+"\n"+sGender);
+                        }
+                        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this, response.body().message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    Toast.makeText(MainActivity.this, ConstantSp.SERVER_ERROR+" "+response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetLoginData> call, Throwable t) {
+                pd.dismiss();
+                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void doSqliteLogin() {
