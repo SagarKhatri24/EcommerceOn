@@ -3,6 +3,7 @@ package ecommerce.on;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiInterface {
@@ -24,5 +25,26 @@ public interface ApiInterface {
             @Field("email") String email,
             @Field("password") String password
     );
+
+    @FormUrlEncoded
+    @POST("updateProfile.php")
+    Call<GetSignupData> updateProfileData(
+            @Field("firstname") String firstname,
+            @Field("lastname") String lastname,
+            @Field("email") String email,
+            @Field("contact") String contact,
+            @Field("password") String password,
+            @Field("gender") String gender,
+            @Field("userid") String userId
+    );
+
+    @FormUrlEncoded
+    @POST("deleteProfile.php")
+    Call<GetSignupData> deleteProfileData(
+            @Field("userid") String userId
+    );
+
+    @GET("getUserData.php")
+    Call<GetUserData> getUserData();
 
 }
