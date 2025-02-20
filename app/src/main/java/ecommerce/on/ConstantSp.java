@@ -2,7 +2,7 @@ package ecommerce.on;
 
 public class ConstantSp {
 
-    public static final String BASE_URL = "http://192.168.1.83/FinalInternshipOn/";
+    public static final String BASE_URL = "http://192.168.1.54/FinalInternshipOn/";
     public static final String SIGNUP_URL = BASE_URL+"signup.php";
     public static final String LOGIN_URL = BASE_URL+"login.php";
     public static final String UPDATE_PROFILE_URL = BASE_URL+"updateProfile.php";
@@ -20,5 +20,5 @@ public class ConstantSp {
     public static final String CONTACT = "contact";
     public static final String PASSWORD = "password";
     public static final String GENDER = "gender";
-
+    public static final String PROFILE = "profile";
 }

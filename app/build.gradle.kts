@@ -51,6 +51,10 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.convertorgson)
 
+    implementation(libs.circleimage)
+    implementation(libs.fishbun)
+    implementation(libs.coil)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

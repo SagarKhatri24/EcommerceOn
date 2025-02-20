@@ -3,102 +3,140 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    style="@style/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    style="@style/background"
     tools:context=".ProfileActivity">
 
-    <EditText
-        android:id="@+id/profile_firstname"
-        android:hint="First Name"
-        android:layout_marginTop="@dimen/_10sdp"
-        style="@style/edit_15"/>
-
-    <EditText
-        android:id="@+id/profile_lastname"
-        android:hint="Last Name"
-        android:layout_marginTop="@dimen/_10sdp"
-        style="@style/edit_15"/>
-
-    <EditText
-        android:inputType="textEmailAddress"
-        android:id="@+id/profile_email"
-        android:hint="Email Id"
-        android:layout_marginTop="@dimen/_10sdp"
-        style="@style/edit_15"/>
-
-    <EditText
-        android:maxLength="10"
-        android:inputType="phone"
-        android:id="@+id/profile_contact"
-        android:hint="Contact No."
-        android:layout_marginTop="@dimen/_10sdp"
-        style="@style/edit_15"/>
-
-    <EditText
-        android:inputType="textPassword"
-        android:id="@+id/profile_password"
-        android:hint="Password"
-        android:layout_marginTop="@dimen/_10sdp"
-        style="@style/edit_15"/>
-
-    <EditText
-        android:inputType="textPassword"
-        android:id="@+id/profile_retype_password"
-        android:hint="ReType Password"
-        android:layout_marginTop="@dimen/_10sdp"
-        style="@style/edit_15"/>
-
-    <RadioGroup
-        android:orientation="horizontal"
-        android:id="@+id/profile_gender"
-        android:layout_marginHorizontal="@dimen/_20sdp"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RadioButton
-            android:layout_weight="1"
-            android:id="@+id/profile_male"
-            android:text="Male"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <RadioButton
-            android:layout_weight="1"
-            android:id="@+id/profile_female"
-            android:text="Female"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <FrameLayout
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_20sdp">
 
-    </RadioGroup>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:src="@drawable/ecom_icon"
+                    app:civ_border_color="@color/black"
+                    app:civ_border_width="@dimen/_1sdp" />
 
-    <Button
-        android:id="@+id/profile_edit"
-        android:text="Edit Profile"
-        android:layout_marginTop="@dimen/_20sdp"
-        app:backgroundTint="@color/yellow"
-        style="@style/button_16"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_camera"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:src="@drawable/ic_menu_camera"
+                    app:civ_border_color="@color/black"
+                    app:civ_border_width="@dimen/_1sdp"
+                    app:civ_circle_background_color="@color/white" />
 
-    <Button
-        android:id="@+id/profile_submit"
-        android:text="Submit"
-        android:layout_marginTop="@dimen/_20sdp"
-        app:backgroundTint="@color/yellow"
-        style="@style/button_16"/>
+            </FrameLayout>
 
-    <Button
-        android:id="@+id/profile_logout"
-        android:text="Logout"
-        android:layout_marginTop="@dimen/_20sdp"
-        app:backgroundTint="@android:color/holo_red_dark"
-        style="@style/button_16"/>
+            <EditText
+                android:id="@+id/profile_firstname"
+                style="@style/edit_15"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="First Name" />
 
-    <Button
-        android:id="@+id/profile_delete"
-        android:text="Delete Profile"
-        android:layout_marginTop="@dimen/_20sdp"
-        app:backgroundTint="@android:color/holo_red_light"
-        style="@style/button_16"/>
+            <EditText
+                android:id="@+id/profile_lastname"
+                style="@style/edit_15"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="Last Name" />
 
+            <EditText
+                android:id="@+id/profile_email"
+                style="@style/edit_15"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="Email Id"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/profile_contact"
+                style="@style/edit_15"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="Contact No."
+                android:inputType="phone"
+                android:maxLength="10" />
+
+            <EditText
+                android:id="@+id/profile_password"
+                style="@style/edit_15"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="Password"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/profile_retype_password"
+                style="@style/edit_15"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="ReType Password"
+                android:inputType="textPassword" />
+
+            <RadioGroup
+                android:id="@+id/profile_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/profile_male"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Male" />
+
+                <RadioButton
+                    android:id="@+id/profile_female"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Female" />
+
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/profile_edit"
+                style="@style/button_16"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="Edit Profile"
+                app:backgroundTint="@color/yellow" />
+
+            <Button
+                android:id="@+id/profile_submit"
+                style="@style/button_16"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="Submit"
+                app:backgroundTint="@color/yellow" />
+
+            <Button
+                android:id="@+id/profile_logout"
+                style="@style/button_16"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="Logout"
+                app:backgroundTint="@android:color/holo_red_dark" />
+
+            <Button
+                android:id="@+id/profile_delete"
+                style="@style/button_16"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="Delete Profile"
+                app:backgroundTint="@android:color/holo_red_light" />
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>
