@@ -55,6 +55,8 @@ dependencies {
     implementation(libs.fishbun)
     implementation(libs.coil)
 
+    implementation(libs.razorpay)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

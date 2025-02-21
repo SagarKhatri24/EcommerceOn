@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RazorpayDemoActivity">
+
+    <EditText
+        android:id="@+id/razorpay_amount"
+        android:maxLength="6"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:inputType="number"
+        android:hint="Amount"
+        style="@style/edit_15"/>
+
+    <Button
+        android:id="@+id/razorpay_paynow"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="Pay Now"
+        style="@style/button_16"/>
+
+</LinearLayout>
